@@ -1,5 +1,5 @@
 from time import sleep
-from connectDB import ListarTabelas
+from crud import readTable, createTable, deleteTable
 import sqlite3
 
 def menu_interacao():
@@ -15,38 +15,13 @@ def menu_interacao():
             
             conexao = sqlite3.connect("ProjetoPython.sqlite")
             cursor = conexao.cursor()
+
+            readTable(cursor, conexao)
+
+            createTable()
+
+            deleteTable()
             
-            ListarTabelas(cursor, conexao)
-
-            
-            criarTabela = input("Deseja criar uma tabela?\nDigite 1 para Sim e 2 para Não: ")
-
-            if criarTabela == "1":
-                nomeTabela = input("Qual o nome da tabela que deseja criar? ")
-                print(f"Tabela '{nomeTabela}' criada com sucesso!\n")
-
-            elif criarTabela == "2":
-                print("A tabela não foi criada!\n")
-
-            else:
-                print("Opção inválida!\n")
-
-
-            
-            deletarTabela = input("Deseja deletar uma tabela?\nDigite 1 para Sim e 2 para Não: ")
-
-            if deletarTabela == "1":
-                print("Deletando tabelas...\n")
-
-            elif deletarTabela == "2":
-                print("A Tabela não foi deletada!\n")
-
-            else:
-                print("Opção inválida!\n")
-
-            loop = True  
-
-
 
         elif continuarSistema == "2":
 
