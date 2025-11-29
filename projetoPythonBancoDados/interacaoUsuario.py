@@ -1,4 +1,6 @@
 from time import sleep
+from connectDB import ListarTabelas
+import sqlite3
 
 def menu_interacao():
     
@@ -10,7 +12,11 @@ def menu_interacao():
         if continuarSistema == "1":
             print("Bem vindo ao nosso sistema!")
             print("Verificando se existem tabelas no banco...\n")
-            print("Nenhuma tabela encontrada")
+            
+            conexao = sqlite3.connect("ProjetoPython.sqlite")
+            cursor = conexao.cursor()
+            
+            ListarTabelas(cursor, conexao)
 
             
             criarTabela = input("Deseja criar uma tabela?\nDigite 1 para Sim e 2 para Não: ")
