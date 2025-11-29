@@ -1,1 +1,3 @@
-print("Iniciando o Sistema")
+from interacaoUsuario import menu_interacao
+
+menu_interacao()
