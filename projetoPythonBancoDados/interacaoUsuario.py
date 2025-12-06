@@ -1,5 +1,5 @@
 from time import sleep
-from crud import readTable, createTable, deleteTable
+from crud import readTable, createTable, deleteTable, InsertSql
 import sqlite3
 
 def menu_interacao():
@@ -21,11 +21,9 @@ def menu_interacao():
 
             criarTabela = input("Deseja criar uma tabela?\nDigite 1 para Sim e 2 para Não: ")
 
-            createTable()
-
             if criarTabela == "1":
                 nomeTabela = input("Qual o nome da tabela que deseja criar? ")
-                print(f"Tabela '{nomeTabela}' criada com sucesso!\n")
+                createTable(conexao, cursor)
 
             elif criarTabela == "2":
                 print("A tabela não foi criada!\n")
@@ -33,18 +31,20 @@ def menu_interacao():
             else:
                 print("Opção inválida!\n")
 
+            print("Inserindo dados iniciais automaticamente...\n")
+            InsertSql(conexao, cursor)
+
             deletarTabela = input("Deseja deletar uma tabela?\nDigite 1 para Sim e 2 para Não: ")
 
-            deleteTable()
-
             if deletarTabela == "1":
-                print("Tabela deletada com sucesso")
+                nomeTabelaParaDeletar = input("Digite o nome da tabela que deseja deletar: ")
+                deleteTable(cursor, conexao, nomeTabelaParaDeletar)
 
             elif deletarTabela == "2":
-                print("A Tabela não foi deletada!\n")
+             print("A Tabela não foi deletada!\n")
 
             else:
-                print("Opção inválida!\n")
+             print("Opção inválida!\n")
 
             loop = True  
 
