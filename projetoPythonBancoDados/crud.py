@@ -69,7 +69,7 @@ def createTable(cursor, conexao):
     """)
 
     conexao.commit()
-    print("✔ Tabelas criadas com sucesso!\n")
+    print(" Tabelas criadas com sucesso!\n")
 
 
 def InsertSql(conexao, cursor):
@@ -77,7 +77,6 @@ def InsertSql(conexao, cursor):
 
     print("Inserindo dados...")
 
-    # CLIENTES
     cursor.execute("""
         INSERT INTO clientes (nome, email, telefone, data_nascimento) VALUES
         ('Leonardo Amorim', 'leonardo@gmail.com', '1199999-0001', '1996-08-15'),
@@ -87,7 +86,6 @@ def InsertSql(conexao, cursor):
         ('Carlos Santos', 'carlos.santos@gmail.com', '1195555-0005', '1999-12-01');
     """)
 
-    # PRODUTOS
     cursor.execute("""
         INSERT INTO produtos (nome, preco, estoque) VALUES
         ('Camiseta Básica', 49.90, 30),
@@ -97,7 +95,6 @@ def InsertSql(conexao, cursor):
         ('Moletom Cinza', 149.90, 25);
     """)
 
-    # PEDIDOS
     cursor.execute("""
         INSERT INTO pedidos (data, valor_total, status) VALUES
         ('2024-01-10', 170.40, 'Finalizado'),
@@ -107,7 +104,7 @@ def InsertSql(conexao, cursor):
         ('2024-04-01', 390.00, 'Finalizado');
     """)
 
-    # FORNECEDORES
+ 
     cursor.execute("""
         INSERT INTO fornecedores (nome, cnpj, telefone, cidade) VALUES
         ('Fornec Roupas LTDA', '12.345.678/0001-90', '1199999-1111', 'São Paulo'),
@@ -117,7 +114,7 @@ def InsertSql(conexao, cursor):
         ('SP Imports', '11.222.333/0001-44', '1190000-1110', 'Guarulhos');
     """)
 
-    # CATEGORIAS
+  
     cursor.execute("""
         INSERT INTO categorias (nome, descricao) VALUES
         ('Roupas', 'Vestuário em geral'),
@@ -129,10 +126,10 @@ def InsertSql(conexao, cursor):
 
     conexao.commit()
 
-    print("\n📌 Dados inseridos com sucesso!")
+    print("\n Dados inseridos com sucesso!")
     print("📋 Listando todas as tabelas:\n")
 
-    # === LISTAR TODAS AS TABELAS ===
+    
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
     tabelas = cursor.fetchall()
 
@@ -156,7 +153,7 @@ def deleteTable(cursor, conexao, nomeTabelaParaDeletar):
     """
     Exclui todos os registros da tabela passada pelo usuário.
     """
-    comando = f"DELETE FROM {nomeTabelaParaDeletar} WHERE id IN (1, 2)"  # Exclui registros com id 1 e 2
+    comando = f"DELETE FROM {nomeTabelaParaDeletar} WHERE id IN (1, 2)"  
     cursor.execute(comando)
     conexao.commit()
     print(f"✔ Registros da tabela {nomeTabelaParaDeletar} foram excluídos!")
